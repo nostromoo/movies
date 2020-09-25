@@ -26,7 +26,7 @@ class MoviesListViewModel @Inject constructor(
             when (result.status) {
                 Result.Status.SUCCESS -> {
                     result.data?.let { moviesResponse ->
-                        moviesRepository.insertAll(moviesResponse.map { Movie(null, it.page.movie_title, it.heros.locale.imageurl) })
+                        moviesRepository.insertAll(moviesResponse.map { Movie(null, it.page.movie_title, it.heros.locale.imageurl, it.clips[0].versions.enus.sizes.sd.srcAlt) })
                         CoroutineScope(Dispatchers.Main).launch{
 //                            _statusMessage.value = Event(message)
                         }
@@ -41,10 +41,4 @@ class MoviesListViewModel @Inject constructor(
             }
         }
     }
-
-    fun goToMovieDetail(v: View) {
-        val navController = v.findNavController()
-        navController.navigate(R.id.action_moviesListFragment_to_movieDetailFragment)
-    }
-
 }

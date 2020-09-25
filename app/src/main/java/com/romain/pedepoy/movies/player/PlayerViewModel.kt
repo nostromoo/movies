@@ -8,7 +8,9 @@ class PlayerViewModel @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) : ViewModel() {
 
-    val movies = moviesRepository.movies
+    var id: Long = 0L
+
+    val movie by lazy { moviesRepository.getMovie(id) }
 
 
 

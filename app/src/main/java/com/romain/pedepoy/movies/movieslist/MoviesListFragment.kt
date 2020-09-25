@@ -18,8 +18,6 @@ import javax.inject.Inject
 
 class MoviesListFragment : Fragment(), Injectable {
 
-
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var moviesListViewModel: MoviesListViewModel

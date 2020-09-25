@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieResponse (
     val page: Page,
-    val heros: Heros
-//    val clips: List<Clip>
+    val heros: Heros,
+    val clips: List<Clip>
 ) {
     class Page (
         val movie_title: String
@@ -21,15 +21,22 @@ data class MovieResponse (
     }
 
     class Clip (
-        val versions: List<Version>
+        val versions: Versions
     ) {
-        class Version (
-            val versions: List<Enus>
+        class Versions (
+            val enus: Enus
         ) {
-
             class Enus (
-                val todo: Int
-            )
+                val sizes: Sizes
+            ){
+                class Sizes (
+                    val sd: Sd
+                ){
+                    class Sd (
+                        val srcAlt: String
+                    )
+                }
+            }
         }
     }
 }

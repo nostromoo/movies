@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <variable
+            name="fragment"
+            type="com.romain.pedepoy.movies.moviedetail.MovieDetailFragment" />
         <variable
             name="viewModel"
             type="com.romain.pedepoy.movies.moviedetail.MovieDetailViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ScanFragment">
         <ImageView
             android:id="@+id/picture"
             android:layout_width="0dp"
@@ -20,13 +25,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="3:2"/>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{(v)->viewModel.goToPlayer(v)}"
+            android:id="@+id/playButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="@{()->fragment.goToPlayer(viewModel.movie)}"
             app:layout_constraintStart_toStartOf="@+id/picture"
             app:layout_constraintEnd_toEndOf="@+id/picture"
             app:layout_constraintBottom_toBottomOf="@+id/picture"
             app:layout_constraintTop_toTopOf="@+id/picture"
+            app:layout_constraintDimensionRatio="1:1"
             android:background="@drawable/ic_play"/>
         <TextView
             android:id="@+id/title"
@@ -34,7 +41,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:layout_marginTop="20dp"
-            app:imageFromUrl="@{viewModel.movie.title}"
+            android:text="@{viewModel.movie.title}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/picture"/>
