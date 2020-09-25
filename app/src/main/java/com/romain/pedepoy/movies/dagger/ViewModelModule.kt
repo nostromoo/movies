@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.romain.pedepoy.movies.moviedetail.MovieDetailViewModel
 import com.romain.pedepoy.movies.movieslist.MoviesListViewModel
+import com.romain.pedepoy.movies.player.PlayerViewModel
 import com.romain.pedepoy.movies.viewmodels.ViewModelsFactory
 import dagger.Binds
 import dagger.Module
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieDetailViewModel::class)
     abstract fun bindMovieDetailViewModel(viewModel: MovieDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlayerViewModel::class)
+    abstract fun bindPlayerViewModel(viewModel: PlayerViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelsFactory): ViewModelProvider.Factory

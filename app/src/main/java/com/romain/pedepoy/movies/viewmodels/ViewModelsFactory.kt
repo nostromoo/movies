@@ -5,19 +5,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.romain.pedepoy.movies.data.MoviesRepository
 import com.romain.pedepoy.movies.moviedetail.MovieDetailViewModel
 import com.romain.pedepoy.movies.movieslist.MoviesListViewModel
+import com.romain.pedepoy.movies.player.PlayerViewModel
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class ViewModelsFactory @Inject constructor(private val repository: MoviesRepository): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(MoviesListViewModel::class.java)){
-            return MoviesListViewModel(
-                repository
-            ) as T
-        } else if(modelClass.isAssignableFrom(MovieDetailViewModel::class.java)){
-            return MovieDetailViewModel(repository) as T
+        return when {
+            modelClass.isAssignableFrom(MoviesListViewModel::class.java) -> {
+                MoviesListViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(MovieDetailViewModel::class.java) -> {
+                MovieDetailViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PlayerViewModel::class.java) -> {
+                PlayerViewModel(repository) as T
+            }
+            else -> throw IllegalArgumentException("Unknown View Model class")
         }
-        throw IllegalArgumentException("Unknown View Model class")
     }
 
 }

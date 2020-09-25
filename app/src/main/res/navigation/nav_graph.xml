@@ -19,8 +19,17 @@
             android:name="movieId"
             app:argType="long"
             android:defaultValue="0L" />
-        <action
-            android:id="@+id/action_movieDetailFragment_to_productListFragment"
-            app:destination="@id/moviesListFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_movieDetailFragment_to_playerFragment"-->
+<!--            app:destination="@id/playerFragment" />-->
     </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/playerFragment"-->
+<!--        android:name="com.romain.pedepoy.movies.player.PlayerFragment"-->
+<!--        android:label="MovieDetailFragment" >-->
+<!--        <argument-->
+<!--            android:name="movieId"-->
+<!--            app:argType="long"-->
+<!--            android:defaultValue="0L" />-->
+<!--    </fragment>-->
 </navigation>
