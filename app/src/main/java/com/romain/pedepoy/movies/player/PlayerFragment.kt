@@ -41,15 +41,9 @@ class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
 
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val height = displayMetrics.heightPixels
         val width = displayMetrics.widthPixels
 
-        requireActivity().window.setFormat(PixelFormat.UNKNOWN)
-        surfaceHolder = binding.surfaceView.holder
-        surfaceHolder.addCallback(this@PlayerFragment)
-        mediaPlayer = MediaPlayer()
-        mediaPlayer?.setDataSource(args.videoUrl)
-        mediaPlayer?.prepare()
+        initPlayer()
 
         playerViewModel.movie.observe(viewLifecycleOwner) {
             surfaceHolder.setFixedSize(width,width*it.videoHeight/it.videoWidth)
@@ -78,4 +72,12 @@ class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
         mediaPlayer?.setDisplay(surfaceHolder)
     }
 
+    private fun initPlayer() {
+        requireActivity().window.setFormat(PixelFormat.UNKNOWN)
+        surfaceHolder = binding.surfaceView.holder
+        surfaceHolder.addCallback(this@PlayerFragment)
+        mediaPlayer = MediaPlayer()
+        mediaPlayer?.setDataSource(args.videoUrl)
+        mediaPlayer?.prepare()
+    }
 }
