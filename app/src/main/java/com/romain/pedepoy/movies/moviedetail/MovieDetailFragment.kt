@@ -39,8 +39,8 @@ class MovieDetailFragment : Fragment(), Injectable {
     }
 
     fun goToPlayer(movie: Movie) {
-        movie.title?.let {
-            val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerFragment(it)
+        movie.videoUrl?.let { videoUrl->
+            val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerFragment(movie.title, videoUrl)
             findNavController().navigate(action)
         }
 

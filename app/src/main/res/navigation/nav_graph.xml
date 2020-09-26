@@ -31,5 +31,9 @@
             android:name="movieTitle"
             app:argType="string"
             android:defaultValue="" />
+        <argument
+            android:name="videoUrl"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 </navigation>
