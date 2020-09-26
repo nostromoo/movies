@@ -15,6 +15,8 @@ buildscript {
     picassoVersion = "2.71828"
     navVersion = "2.2.2"
     pagingVersion = '2.1.2'
+    browserVersion = '1.2.0'
+    okhttpVersion = '4.9.0'
   }
   repositories {
     google()

@@ -11,9 +11,6 @@ import androidx.room.Query
 interface MoviesDao {
 
     @Query("SELECT * FROM movies")
-    fun getAll(): LiveData<List<Movie>>
-
-    @Query("SELECT * FROM movies")
     fun getPagedList(): DataSource.Factory<Int, Movie>
 
     @Query("SELECT * FROM movies WHERE title = :title")

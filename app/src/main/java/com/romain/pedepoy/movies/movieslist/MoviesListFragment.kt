@@ -39,10 +39,10 @@ class MoviesListFragment : Fragment(), Injectable {
         binding.moviesList.layoutManager = LinearLayoutManager(requireContext())
         adapter = MoviesAdapter(this)
         binding.moviesList.adapter = adapter
-        displayProductsList()
+        displayMoviesList()
     }
 
-    private fun displayProductsList(){
+    private fun displayMoviesList(){
         moviesListViewModel.movies.observe(viewLifecycleOwner){
             adapter.submitList(it.data)
             adapter.notifyDataSetChanged()

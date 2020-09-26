@@ -63,7 +63,7 @@ dependencies {
   implementation "androidx.paging:paging-runtime:$rootProject.pagingVersion"
   implementation "androidx.paging:paging-runtime-ktx:$rootProject.pagingVersion"
   implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
-  implementation "androidx.browser:browser:1.2.0"
+  implementation "androidx.browser:browser:$rootProject.browserVersion"
 
   // Kotlin
   implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navVersion"
@@ -77,7 +77,7 @@ dependencies {
   // Api
   implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
   implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-  implementation("com.squareup.okhttp3:okhttp-tls:4.9.0")
+  implementation("com.squareup.okhttp3:okhttp-tls:$rootProject.okhttpVersion")
 
   // Dagger
   kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
