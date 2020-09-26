@@ -15,6 +15,7 @@ data class Movie (
     val officialUrl: String?,
     val synopsis: String?,
     val releaseDate: String?,
+    val rating: String?,
     @TypeConverters(MyTypeConverter::class)
     val directors: List<String>,
     @TypeConverters(MyTypeConverter::class)
@@ -22,7 +23,11 @@ data class Movie (
     @TypeConverters(MyTypeConverter::class)
     val actors: List<String>
 ){
-    fun releaseLabel() = " Release date : $releaseDate"
+    fun releaseLabel() =
+        " Release date : $releaseDate"
+
+    fun ratingLabel() =
+        " Rating :\n ${rating?.toUpperCase()}"
 
     fun directorsLabel() =
         " Director :\n ${directors.joinToString(", ")}"

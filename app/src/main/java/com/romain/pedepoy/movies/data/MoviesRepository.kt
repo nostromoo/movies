@@ -28,6 +28,7 @@ class MoviesRepository  @Inject constructor(private val dao: MoviesDao,
                     it.details.official_url,
                     it.details.locale.en.synopsis,
                     it.page.release_copy,
+                    it.page.movie_rating,
                     if(it.details.locale.en.castcrew?.directors != null) it.details.locale.en.castcrew.directors.map { director -> director.name } else arrayListOf(),
                     if(it.details.locale.en.castcrew?.writers != null) it.details.locale.en.castcrew.writers.map { writer -> writer.name } else arrayListOf(),
                     if(it.details.locale.en.castcrew?.actors != null) it.details.locale.en.castcrew.actors.map { actor -> actor.name } else arrayListOf())

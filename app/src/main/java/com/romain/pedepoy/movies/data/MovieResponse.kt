@@ -10,6 +10,7 @@ data class MovieResponse (
 ) {
     class Page (
         val movie_title: String,
+        val movie_rating: String,
         val release_copy: String
     )
 
