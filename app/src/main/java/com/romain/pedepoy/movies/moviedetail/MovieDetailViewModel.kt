@@ -1,8 +1,10 @@
 package com.romain.pedepoy.movies.moviedetail
 
-import android.view.View
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModel
-import androidx.navigation.findNavController
 import com.romain.pedepoy.movies.data.MoviesRepository
 import javax.inject.Inject
 
@@ -14,8 +16,13 @@ class MovieDetailViewModel @Inject constructor(
 
     val movie by lazy { moviesRepository.getMovie(id) }
 
-    fun goToPlayer(v: View) {
-        val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerFragment(id)
-        v.findNavController().navigate(action)
+    fun goToOfficialSite(context: Context) {
+        if(movie.value?.officialUrl.isNullOrEmpty().not()) {
+            val builderCustomTabs: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
+            val intentCustomTabs: CustomTabsIntent = builderCustomTabs.build()
+            intentCustomTabs.intent.setPackage("com.android.chrome")
+            intentCustomTabs.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intentCustomTabs.launchUrl(context, Uri.parse(movie.value?.officialUrl))
+        }
     }
 }

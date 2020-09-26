@@ -18,6 +18,7 @@ package com.romain.pedepoy.movies.adapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.romain.pedepoy.movies.R
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("imageFromUrl")
@@ -26,6 +27,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
         Picasso
             .get()
             .load(imageUrl)
+            .placeholder(R.drawable.popcorn)
             .into(view)
     }
 }

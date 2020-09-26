@@ -2,6 +2,7 @@ package com.romain.pedepoy.movies.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 
 @Entity(tableName = "movies")
 data class Movie (
@@ -9,5 +10,26 @@ data class Movie (
     var id: Long?,
     val title: String?,
     val cover: String?,
-    val videoUrl: String?
-)
+    val videoUrl: String?,
+    val officialUrl: String?,
+    val synopsis: String?,
+    val releaseDate: String?,
+    @TypeConverters(MyTypeConverter::class)
+    val directors: List<String>,
+    @TypeConverters(MyTypeConverter::class)
+    val writers: List<String>,
+    @TypeConverters(MyTypeConverter::class)
+    val actors: List<String>
+){
+    fun releaseLabel() = " Release date : $releaseDate"
+
+    fun directorsLabel() =
+        " Director :\n ${directors.joinToString(", ")}"
+
+    fun writersLabel() =
+        " Writer :\n ${writers.joinToString(", ")}"
+
+    fun actorsLabel() =
+        " Actors :\n ${actors.joinToString(", ")}"
+
+}

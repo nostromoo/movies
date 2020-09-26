@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.romain.pedepoy.movies.R
 import com.romain.pedepoy.movies.adapter.MoviesAdapter
 import com.romain.pedepoy.movies.dagger.Injectable
 import com.romain.pedepoy.movies.dagger.injectViewModel
@@ -32,21 +31,20 @@ class MoviesListFragment : Fragment(), Injectable {
         binding.myViewModel = moviesListViewModel
         binding.lifecycleOwner = this
         initRecyclerView()
-        moviesListViewModel.fetchMovies()
 
         return binding.root
     }
 
     private fun initRecyclerView(){
-        binding.productList.layoutManager = LinearLayoutManager(requireContext())
+        binding.moviesList.layoutManager = LinearLayoutManager(requireContext())
         adapter = MoviesAdapter(this)
-        binding.productList.adapter = adapter
+        binding.moviesList.adapter = adapter
         displayProductsList()
     }
 
     private fun displayProductsList(){
         moviesListViewModel.movies.observe(viewLifecycleOwner){
-            adapter.submitList(it)
+            adapter.submitList(it.data)
             adapter.notifyDataSetChanged()
         }
     }

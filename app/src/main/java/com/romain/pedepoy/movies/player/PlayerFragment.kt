@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
-import com.romain.pedepoy.movies.R
 import com.romain.pedepoy.movies.dagger.Injectable
 import com.romain.pedepoy.movies.dagger.injectViewModel
 import com.romain.pedepoy.movies.databinding.FragmentPlayerBinding
@@ -34,7 +33,6 @@ class PlayerFragment : Fragment(), Injectable {
         binding = FragmentPlayerBinding.inflate(inflater, container, false)
 
         playerViewModel = injectViewModel(viewModelFactory)
-
         playerViewModel.id = args.movieId
 
         binding.myViewModel = playerViewModel
@@ -49,13 +47,14 @@ class PlayerFragment : Fragment(), Injectable {
             surfaceHolder = binding.surfaceView.holder
             mediaPlayer.setDisplay(surfaceHolder)
         }
-
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mediaPlayer.release()
+        if(::mediaPlayer.isInitialized){
+            mediaPlayer.release()
+        }
     }
 
 }

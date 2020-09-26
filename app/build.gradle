@@ -63,7 +63,7 @@ dependencies {
   implementation "androidx.paging:paging-runtime:$rootProject.pagingVersion"
   implementation "androidx.paging:paging-runtime-ktx:$rootProject.pagingVersion"
   implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
-
+  implementation "androidx.browser:browser:1.2.0"
 
   // Kotlin
   implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navVersion"
