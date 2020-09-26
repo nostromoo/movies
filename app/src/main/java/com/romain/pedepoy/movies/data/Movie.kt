@@ -10,6 +10,8 @@ data class Movie (
     val title: String,
     val cover: String?,
     val videoUrl: String?,
+    val videoHeight: Int,
+    val videoWidth: Int,
     val officialUrl: String?,
     val synopsis: String?,
     val releaseDate: String?,

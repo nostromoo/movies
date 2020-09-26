@@ -60,7 +60,9 @@ data class MovieResponse (
                     val sd: Sd
                 ){
                     class Sd (
-                        val srcAlt: String
+                        val srcAlt: String,
+                        val height: String,
+                        val width: Int
                     )
                 }
             }

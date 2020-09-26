@@ -3,6 +3,7 @@ package com.romain.pedepoy.movies.player
 import android.graphics.PixelFormat
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.SurfaceHolder
@@ -38,6 +39,11 @@ class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
         binding.myViewModel = playerViewModel
         binding.lifecycleOwner = this
 
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val height = displayMetrics.heightPixels
+        val width = displayMetrics.widthPixels
+
         requireActivity().window.setFormat(PixelFormat.UNKNOWN)
         surfaceHolder = binding.surfaceView.holder
         surfaceHolder.addCallback(this@PlayerFragment)
@@ -46,6 +52,7 @@ class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
         mediaPlayer?.prepare()
 
         playerViewModel.movie.observe(viewLifecycleOwner) {
+            surfaceHolder.setFixedSize(width,width*it.videoHeight/it.videoWidth)
         }
         return binding.root
     }
@@ -61,15 +68,12 @@ class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
     }
 
     override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
-        Log.d("rominou", "surfaceChanged")
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
-        Log.d("rominou", "surfaceDestroyed")
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
-        Log.d("rominou", "surfaceCreated")
         mediaPlayer?.start()
         mediaPlayer?.setDisplay(surfaceHolder)
     }
