@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import com.romain.pedepoy.movies.dagger.Injectable
 import com.romain.pedepoy.movies.dagger.injectViewModel
 import com.romain.pedepoy.movies.databinding.FragmentPlayerBinding
-import com.romain.pedepoy.movies.moviedetail.MovieDetailFragmentArgs
 import javax.inject.Inject
 
 
@@ -27,13 +26,13 @@ class PlayerFragment : Fragment(), Injectable {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var surfaceHolder: SurfaceHolder
 
-    val args: MovieDetailFragmentArgs by navArgs()
+    val args: PlayerFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentPlayerBinding.inflate(inflater, container, false)
 
         playerViewModel = injectViewModel(viewModelFactory)
-        playerViewModel.id = args.movieId
+        playerViewModel.title = args.movieTitle
 
         binding.myViewModel = playerViewModel
         binding.lifecycleOwner = this

@@ -49,8 +49,8 @@ class MoviesListFragment : Fragment(), Injectable {
         }
     }
 
-    fun goToMovieDetail(v: View, id: Long) {
-        val action = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(id)
+    fun goToMovieDetail(v: View, title: String) {
+        val action = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(title)
         v.findNavController().navigate(action)
     }
 }

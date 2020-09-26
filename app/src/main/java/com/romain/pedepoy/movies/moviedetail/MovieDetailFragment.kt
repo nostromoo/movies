@@ -28,7 +28,7 @@ class MovieDetailFragment : Fragment(), Injectable {
         binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
 
         movieDetailViewModel = injectViewModel(viewModelFactory)
-        movieDetailViewModel.id = args.movieId
+        movieDetailViewModel.title = args.movieTitle
         binding.viewModel = movieDetailViewModel
         binding.fragment = this
         binding.lifecycleOwner = this
@@ -39,7 +39,7 @@ class MovieDetailFragment : Fragment(), Injectable {
     }
 
     fun goToPlayer(movie: Movie) {
-        movie.id?.let {
+        movie.title?.let {
             val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerFragment(it)
             findNavController().navigate(action)
         }

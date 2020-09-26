@@ -16,9 +16,9 @@
         android:name="com.romain.pedepoy.movies.moviedetail.MovieDetailFragment"
         android:label="MovieDetailFragment" >
         <argument
-            android:name="movieId"
-            app:argType="long"
-            android:defaultValue="0L" />
+            android:name="movieTitle"
+            app:argType="string"
+            android:defaultValue="" />
         <action
             android:id="@+id/action_movieDetailFragment_to_playerFragment"
             app:destination="@id/playerFragment" />
@@ -28,8 +28,8 @@
         android:name="com.romain.pedepoy.movies.player.PlayerFragment"
         android:label="MovieDetailFragment" >
         <argument
-            android:name="movieId"
-            app:argType="long"
-            android:defaultValue="0L" />
+            android:name="movieTitle"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 </navigation>

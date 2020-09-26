@@ -6,9 +6,8 @@ import androidx.room.TypeConverters
 
 @Entity(tableName = "movies")
 data class Movie (
-    @PrimaryKey(autoGenerate = true)
-    var id: Long?,
-    val title: String?,
+    @PrimaryKey
+    val title: String,
     val cover: String?,
     val videoUrl: String?,
     val officialUrl: String?,

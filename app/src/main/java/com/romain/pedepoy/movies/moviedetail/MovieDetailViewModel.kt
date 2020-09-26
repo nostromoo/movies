@@ -12,9 +12,9 @@ class MovieDetailViewModel @Inject constructor(
     val  moviesRepository: MoviesRepository
 ) : ViewModel() {
 
-    var id: Long = 0L
+    var title: String = ""
 
-    val movie by lazy { moviesRepository.getMovie(id) }
+    val movie by lazy { moviesRepository.getMovie(title) }
 
     fun goToOfficialSite(context: Context) {
         if(movie.value?.officialUrl.isNullOrEmpty().not()) {

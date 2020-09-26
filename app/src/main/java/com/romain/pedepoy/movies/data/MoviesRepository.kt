@@ -20,8 +20,7 @@ class MoviesRepository  @Inject constructor(private val dao: MoviesDao,
         val responseStatus = remoteSource.fetchData()
         if (responseStatus.status == Result.Status.SUCCESS) {
             dao.insertAll(responseStatus.data!!.map {
-                Movie(null,
-                    it.page.movie_title,
+                Movie(it.page.movie_title,
                     it.heros.locale.imageurl,
                     it.clips[0].versions.enus.sizes.sd.srcAlt,
                     it.details.official_url,
@@ -37,5 +36,5 @@ class MoviesRepository  @Inject constructor(private val dao: MoviesDao,
         }
     }
 
-    fun getMovie(id: Long) = dao.getMovie(id)
+    fun getMovie(title: String) = dao.getMovie(title)
 }

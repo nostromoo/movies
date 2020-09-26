@@ -19,7 +19,7 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 app:imageFromUrl="@{movie.cover}"
-                android:onClick="@{(v)->view.goToMovieDetail(v, movie.id)}"
+                android:onClick="@{(v)->view.goToMovieDetail(v, movie.title)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
