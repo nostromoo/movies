@@ -39,5 +39,7 @@ class MoviesRepository  @Inject constructor(private val dao: MoviesDao,
         }
     }
 
+    fun getLiveDataMovie(title: String) = dao.getLiveDataMovie(title)
+
     fun getMovie(title: String) = dao.getMovie(title)
 }

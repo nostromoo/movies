@@ -1,11 +1,10 @@
 package com.romain.pedepoy.movies.dagger
 
 import android.app.Application
-import android.content.Context
 import com.romain.pedepoy.movies.data.AppDatabase
-import com.romain.pedepoy.movies.utilities.BASE_URL
-import com.romain.pedepoy.movies.service.MoviesApi
 import com.romain.pedepoy.movies.data.MoviesRemoteDataSource
+import com.romain.pedepoy.movies.service.MoviesApi
+import com.romain.pedepoy.movies.utilities.BASE_URL
 import com.romain.pedepoy.movies.utilities.CERTIFICATE_AUTHORITY
 import dagger.Module
 import dagger.Provides
@@ -55,7 +54,5 @@ class AppModule {
     @Singleton
     @Provides
     fun provideMoviesDao(db: AppDatabase) = db.moviesDao()
-
-
 
 }

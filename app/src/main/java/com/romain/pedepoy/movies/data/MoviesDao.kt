@@ -14,7 +14,10 @@ interface MoviesDao {
     fun getPagedList(): DataSource.Factory<Int, Movie>
 
     @Query("SELECT * FROM movies WHERE title = :title")
-    fun getMovie(title: String): LiveData<Movie>
+    fun getLiveDataMovie(title: String): LiveData<Movie>
+
+    @Query("SELECT * FROM movies WHERE title = :title")
+    fun getMovie(title: String): Movie
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<Movie>)

@@ -5,44 +5,89 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.romain.pedepoy.movies.R
 import com.romain.pedepoy.movies.dagger.Injectable
-import com.romain.pedepoy.movies.dagger.injectViewModel
 import com.romain.pedepoy.movies.data.Movie
-import com.romain.pedepoy.movies.databinding.FragmentMovieDetailBinding
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import javax.inject.Inject
 
-class MovieDetailFragment : Fragment(), Injectable {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var movieDetailViewModel: MovieDetailViewModel
-    private lateinit var binding: FragmentMovieDetailBinding
+class MovieDetailFragment : Fragment(), MovieDetailView, Injectable {
 
     val args: MovieDetailFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
+    @Inject
+    lateinit var presenter: MovieDetailPresenter
 
-        movieDetailViewModel = injectViewModel(viewModelFactory)
-        movieDetailViewModel.title = args.movieTitle
-        binding.viewModel = movieDetailViewModel
-        binding.fragment = this
-        binding.lifecycleOwner = this
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        presenter.movieDetailView = this
 
-        movieDetailViewModel.movie.observe(viewLifecycleOwner) {
-        }
-        return binding.root
+        presenter.getMovie(args.movieTitle)
+        return inflater.inflate(R.layout.fragment_movie_detail, container, false)
     }
 
-    fun goToPlayer(movie: Movie) {
-        movie.videoUrl?.let { videoUrl->
-            val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerFragment(movie.title, videoUrl)
-            findNavController().navigate(action)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        officialSite.setOnClickListener {
+            presenter.goToOfficialSite(requireContext())
         }
 
+        playButton.setOnClickListener {
+            presenter.goToPlayer()
+        }
+    }
+
+    override fun displayPicture(movie: Movie) {
+        if (!movie.cover.isNullOrEmpty()) {
+            Picasso
+                .get()
+                .load(movie.cover)
+                .placeholder(R.drawable.popcorn)
+                .into(picture)
+        }
+    }
+
+    override fun displaySynopsis(movie: Movie) {
+        synopsis.text = movie.synopsis
+    }
+
+    override fun displayReleaseLabel(movie: Movie) {
+        releaseDate.text = movie.releaseLabel()
+    }
+
+    override fun displayRatingLabel(movie: Movie) {
+        rating.text = movie.ratingLabel()
+    }
+
+    override fun displayDirectorsLabel(movie: Movie) {
+        directors.text = movie.directorsLabel()
+    }
+
+    override fun displayWritersLabel(movie: Movie) {
+        writers.text = movie.writersLabel()
+    }
+
+    override fun displayActorsLabel(movie: Movie) {
+        actors.text = movie.actorsLabel()
+    }
+
+    override fun displayOfficialUrl(movie: Movie) {
+        officialSite.text = movie.officialUrl
+    }
+
+    override fun goToPlayer(movie: Movie) {
+        movie.videoUrl?.let { videoUrl ->
+            val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerFragment(
+                movie.title,
+                videoUrl
+            )
+            findNavController().navigate(action)
+        }
     }
 }

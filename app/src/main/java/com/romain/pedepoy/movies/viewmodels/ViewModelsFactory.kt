@@ -3,10 +3,8 @@ package com.romain.pedepoy.movies.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.romain.pedepoy.movies.data.MoviesRepository
-import com.romain.pedepoy.movies.moviedetail.MovieDetailViewModel
 import com.romain.pedepoy.movies.movieslist.MoviesListViewModel
 import com.romain.pedepoy.movies.player.PlayerViewModel
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class ViewModelsFactory @Inject constructor(private val repository: MoviesRepository): ViewModelProvider.Factory {
@@ -15,9 +13,9 @@ class ViewModelsFactory @Inject constructor(private val repository: MoviesReposi
             modelClass.isAssignableFrom(MoviesListViewModel::class.java) -> {
                 MoviesListViewModel(repository) as T
             }
-            modelClass.isAssignableFrom(MovieDetailViewModel::class.java) -> {
-                MovieDetailViewModel(repository) as T
-            }
+//            modelClass.isAssignableFrom(MovieDetailViewModel::class.java) -> {
+//                MovieDetailViewModel(repository) as T
+//            }
             modelClass.isAssignableFrom(PlayerViewModel::class.java) -> {
                 PlayerViewModel(repository) as T
             }
