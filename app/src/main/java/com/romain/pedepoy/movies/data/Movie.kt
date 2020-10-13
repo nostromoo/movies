@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
 @Entity(tableName = "movies")
-data class Movie (
+data class Movie(
     @PrimaryKey
     val title: String,
     val cover: String?,
@@ -22,7 +22,7 @@ data class Movie (
     val writers: List<String>,
     @TypeConverters(MyTypeConverter::class)
     val actors: List<String>
-){
+) {
     fun releaseLabel() =
         " Release date : $releaseDate"
 

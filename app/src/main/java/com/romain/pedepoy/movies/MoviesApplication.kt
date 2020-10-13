@@ -8,7 +8,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-class MoviesApplication : Application(), HasActivityInjector  {
+class MoviesApplication : Application(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
@@ -19,5 +19,5 @@ class MoviesApplication : Application(), HasActivityInjector  {
         AppInjector.init(this)
     }
 
-    override fun activityInjector(): AndroidInjector<Activity>  = dispatchingAndroidInjector
+    override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
 }

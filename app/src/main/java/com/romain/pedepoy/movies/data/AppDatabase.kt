@@ -14,7 +14,8 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
-        @Volatile private var instance: AppDatabase? = null
+        @Volatile
+        private var instance: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {

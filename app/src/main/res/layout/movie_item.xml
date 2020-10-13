@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data>
-        <variable
-                name="movie"
-                type="com.romain.pedepoy.movies.data.Movie"/>
-        <variable
-            name="view"
-            type="com.romain.pedepoy.movies.movieslist.MoviesListFragment"/>
-    </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <ImageView
-                android:id="@+id/picture"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerCrop"
-                app:imageFromUrl="@{movie.cover}"
-                android:onClick="@{(v)->view.goToMovieDetail(v, movie.title)}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintDimensionRatio="3:2"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="3:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

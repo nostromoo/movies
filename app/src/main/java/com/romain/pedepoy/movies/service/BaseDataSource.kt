@@ -1,7 +1,7 @@
 package com.romain.pedepoy.movies.service
 
-import retrofit2.Response
 import com.romain.pedepoy.movies.data.Result
+import retrofit2.Response
 
 /**
  * Abstract Base Data source class with error handling

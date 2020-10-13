@@ -7,6 +7,7 @@ import java.util.*
 
 class MyTypeConverter {
     private val gson = Gson()
+
     @TypeConverter
     fun stringToList(data: String?): List<String> {
         if (data == null) {

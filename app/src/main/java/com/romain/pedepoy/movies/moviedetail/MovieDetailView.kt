@@ -1,9 +1,8 @@
 package com.romain.pedepoy.movies.moviedetail
 
-import com.romain.pedepoy.movies.MvpView
 import com.romain.pedepoy.movies.data.Movie
 
-interface MovieDetailView: MvpView {
+interface MovieDetailView {
 
     fun displayPicture(movie: Movie)
     fun displaySynopsis(movie: Movie)

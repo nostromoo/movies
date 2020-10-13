@@ -18,7 +18,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--            android:onClick="@{()->fragment.goToPlayer(viewModel.movie)}"-->
         <Button
             android:id="@+id/playButton"
             android:layout_width="50dp"
@@ -103,7 +102,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/actors" />
 
-        <!--            android:onClick="@{() -> viewModel.goToOfficialSite(fragment.requireContext())}"-->
         <TextView
             android:id="@+id/officialSite"
             android:layout_width="0dp"

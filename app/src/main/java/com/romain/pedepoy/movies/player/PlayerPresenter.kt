@@ -1,6 +1,5 @@
 package com.romain.pedepoy.movies.player
 
-import com.romain.pedepoy.movies.BasePresenter
 import com.romain.pedepoy.movies.data.Movie
 import com.romain.pedepoy.movies.data.MoviesRepository
 import kotlinx.coroutines.Dispatchers
@@ -9,8 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class PlayerPresenter @Inject constructor(private val moviesRepository: MoviesRepository) :
-    BasePresenter<PlayerView>() {
+class PlayerPresenter @Inject constructor(private val moviesRepository: MoviesRepository) {
 
     var playerView: PlayerView? = null
 

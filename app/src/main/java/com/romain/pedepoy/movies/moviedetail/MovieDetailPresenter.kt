@@ -4,17 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
-import com.romain.pedepoy.movies.BasePresenter
 import com.romain.pedepoy.movies.data.Movie
 import com.romain.pedepoy.movies.data.MoviesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class MovieDetailPresenter @Inject constructor(private val moviesRepository: MoviesRepository) :
-    BasePresenter<MovieDetailView>() {
+class MovieDetailPresenter @Inject constructor(private val moviesRepository: MoviesRepository) {
 
     var movieDetailView: MovieDetailView? = null
 

@@ -5,52 +5,61 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.romain.pedepoy.movies.R
 import com.romain.pedepoy.movies.adapter.MoviesAdapter
+import com.romain.pedepoy.movies.adapter.OnItemClickListener
 import com.romain.pedepoy.movies.dagger.Injectable
-import com.romain.pedepoy.movies.dagger.injectViewModel
-import com.romain.pedepoy.movies.databinding.FragmentMoviesListBinding
+import com.romain.pedepoy.movies.data.Movie
+import kotlinx.android.synthetic.main.fragment_movies_list.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MoviesListFragment : Fragment(), Injectable {
+class MoviesListFragment : Fragment(), Injectable, MoviesListView {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var moviesListViewModel: MoviesListViewModel
+    lateinit var moviesListPresenter: MoviesListPresenter
     private lateinit var adapter: MoviesAdapter
-    private lateinit var binding: FragmentMoviesListBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentMoviesListBinding.inflate(inflater, container, false)
-
-        moviesListViewModel = injectViewModel(viewModelFactory)
-
-        binding.myViewModel = moviesListViewModel
-        binding.lifecycleOwner = this
-        initRecyclerView()
-
-        return binding.root
-    }
-
-    private fun initRecyclerView(){
-        binding.moviesList.layoutManager = LinearLayoutManager(requireContext())
-        adapter = MoviesAdapter(this)
-        binding.moviesList.adapter = adapter
-        displayMoviesList()
-    }
-
-    private fun displayMoviesList(){
-        moviesListViewModel.movies.observe(viewLifecycleOwner){
-            adapter.submitList(it.data)
-            adapter.notifyDataSetChanged()
+    private val onItemClickListener = object : OnItemClickListener<Movie> {
+        override fun onItemClick(view: View?, data: Movie) {
+            val action =
+                MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(data.title)
+            findNavController().navigate(action)
         }
     }
 
-    fun goToMovieDetail(v: View, title: String) {
-        val action = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(title)
-        v.findNavController().navigate(action)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        moviesListPresenter.moviesListView = this
+
+        return inflater.inflate(R.layout.fragment_movies_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecyclerView()
+
+        moviesListPresenter.getMoviesList()
+    }
+
+    private fun initRecyclerView() {
+        moviesList.layoutManager = LinearLayoutManager(requireContext())
+        adapter = MoviesAdapter(onItemClickListener)
+        moviesList.adapter = adapter
+    }
+
+    override fun displayMoviesList(movies: List<Movie>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            adapter.setItems(movies)
+        }
     }
 }
