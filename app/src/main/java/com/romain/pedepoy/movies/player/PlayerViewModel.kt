@@ -10,8 +10,6 @@ class PlayerViewModel @Inject constructor(
 
     var title: String = ""
 
-    val movie by lazy { moviesRepository.getLiveDataMovie(title) }
-
-
+    val movie by lazy { moviesRepository.getMovie(title) }
 
 }

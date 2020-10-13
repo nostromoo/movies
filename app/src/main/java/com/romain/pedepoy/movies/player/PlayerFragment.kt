@@ -4,51 +4,44 @@ import android.graphics.PixelFormat
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.SurfaceHolder
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
+import com.romain.pedepoy.movies.R
 import com.romain.pedepoy.movies.dagger.Injectable
-import com.romain.pedepoy.movies.dagger.injectViewModel
-import com.romain.pedepoy.movies.databinding.FragmentPlayerBinding
+import com.romain.pedepoy.movies.data.Movie
+import kotlinx.android.synthetic.main.fragment_player.*
 import javax.inject.Inject
 
 
-class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
+class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback, PlayerView {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var playerViewModel: PlayerViewModel
-    private lateinit var binding: FragmentPlayerBinding
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var surfaceHolder: SurfaceHolder
 
     val args: PlayerFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentPlayerBinding.inflate(inflater, container, false)
+    @Inject
+    lateinit var presenter: PlayerPresenter
 
-        playerViewModel = injectViewModel(viewModelFactory)
-        playerViewModel.title = args.movieTitle
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        binding.myViewModel = playerViewModel
-        binding.lifecycleOwner = this
+        presenter.playerView = this
 
-        val displayMetrics = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val width = displayMetrics.widthPixels
+        return inflater.inflate(R.layout.fragment_player, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initPlayer()
-
-        playerViewModel.movie.observe(viewLifecycleOwner) {
-            surfaceHolder.setFixedSize(width,width*it.videoHeight/it.videoWidth)
-        }
-        return binding.root
+        presenter.initVideo(args.movieTitle)
     }
 
     override fun onPause() {
@@ -72,9 +65,16 @@ class PlayerFragment : Fragment(), Injectable, SurfaceHolder.Callback {
         mediaPlayer?.setDisplay(surfaceHolder)
     }
 
+    override fun initVideo(movie: Movie) {
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val width = displayMetrics.widthPixels
+        surfaceHolder.setFixedSize(width, width * movie.videoHeight / movie.videoWidth)
+    }
+
     private fun initPlayer() {
         requireActivity().window.setFormat(PixelFormat.UNKNOWN)
-        surfaceHolder = binding.surfaceView.holder
+        surfaceHolder = surfaceView.holder
         surfaceHolder.addCallback(this@PlayerFragment)
         mediaPlayer = MediaPlayer()
         mediaPlayer?.setDataSource(args.videoUrl)
