@@ -24,14 +24,7 @@ class MovieDetailPresenter @Inject constructor(private val moviesRepository: Mov
                 movie = moviesRepository.getMovie(title)
                 movie?.let {
                     withContext(Dispatchers.Main) {
-                        movieDetailView?.displayPicture(it)
-                        movieDetailView?.displaySynopsis(it)
-                        movieDetailView?.displayReleaseLabel(it)
-                        movieDetailView?.displayRatingLabel(it)
-                        movieDetailView?.displayDirectorsLabel(it)
-                        movieDetailView?.displayWritersLabel(it)
-                        movieDetailView?.displayActorsLabel(it)
-                        movieDetailView?.displayOfficialUrl(it)
+                        movieDetailView?.displayMoviesInfo(it)
                     }
                 }
             }

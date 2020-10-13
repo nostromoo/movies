@@ -43,7 +43,7 @@ class MovieDetailFragment : Fragment(), MovieDetailView, Injectable {
         }
     }
 
-    override fun displayPicture(movie: Movie) {
+    override fun displayMoviesInfo(movie: Movie) {
         if (!movie.cover.isNullOrEmpty()) {
             Picasso
                 .get()
@@ -51,33 +51,12 @@ class MovieDetailFragment : Fragment(), MovieDetailView, Injectable {
                 .placeholder(R.drawable.popcorn)
                 .into(picture)
         }
-    }
-
-    override fun displaySynopsis(movie: Movie) {
         synopsis.text = movie.synopsis
-    }
-
-    override fun displayReleaseLabel(movie: Movie) {
         releaseDate.text = movie.releaseLabel()
-    }
-
-    override fun displayRatingLabel(movie: Movie) {
         rating.text = movie.ratingLabel()
-    }
-
-    override fun displayDirectorsLabel(movie: Movie) {
         directors.text = movie.directorsLabel()
-    }
-
-    override fun displayWritersLabel(movie: Movie) {
         writers.text = movie.writersLabel()
-    }
-
-    override fun displayActorsLabel(movie: Movie) {
         actors.text = movie.actorsLabel()
-    }
-
-    override fun displayOfficialUrl(movie: Movie) {
         officialSite.text = movie.officialUrl
     }
 
