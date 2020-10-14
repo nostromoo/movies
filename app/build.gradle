@@ -67,4 +67,8 @@ dependencies {
   // Pictures
   implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
+  //Exoplayer
+  implementation 'com.google.android.exoplayer:exoplayer-core:2.12.0'
+  implementation 'com.google.android.exoplayer:exoplayer-ui:2.12.0'
+
 }
