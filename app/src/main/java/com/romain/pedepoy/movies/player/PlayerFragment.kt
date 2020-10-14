@@ -68,4 +68,5 @@ class PlayerFragment : Fragment(), Injectable, Player.EventListener {
         player.prepare()
         player.play()
     }
+
 }

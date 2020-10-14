@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">Movies</string>
+
+  <string name="player_reward_seconds">10</string>
+  <string name="player_forward_seconds">10</string>
+  <string name="player_back_start">Reprendre du début</string>
+
 </resources>

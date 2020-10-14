@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="corner_radius_card">10dp</dimen>
+
+    <dimen name="xxxxxtra_large">48dp</dimen>
+    <dimen name="xxxxtra_large">40dp</dimen>
+    <dimen name="xxxtra_large">36dp</dimen>
+    <dimen name="xxtra_large">32dp</dimen>
+    <dimen name="xtra_large">28dp</dimen>
+    <dimen name="large">24dp</dimen>
+    <dimen name="medium">20dp</dimen>
+    <dimen name="small">16dp</dimen>
+    <dimen name="xtra_small">12dp</dimen>
+    <dimen name="xxtra_small">8dp</dimen>
+    <dimen name="xxxtra_small">4dp</dimen>
+    <dimen name="xxxxtra_small">2dp</dimen>
+
+    <dimen name="text_xlarge">32sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium_large">16sp</dimen>
+    <dimen name="text_medium_plus">14sp</dimen>
+    <dimen name="text_medium">12sp</dimen>
+
+    <dimen name="elevation_large">8dp</dimen>
+    <dimen name="elevation_medium">6dp</dimen>
+    <dimen name="elevation_small">4dp</dimen>
+    <dimen name="elevation_xtra_small">2dp</dimen>
+
+    <dimen name="lock_corner_size">40dp</dimen>
+    <dimen name="home_toolbar_expended">80dp</dimen>
+    <dimen name="home_toolbar_avatar">48dp</dimen>
+
+    <dimen name="fab_image_size">16dp</dimen>
+
+    <dimen name="live_separator_height">24dp</dimen>
+
+    <dimen name="player_top_bottom_bar_height">76dp</dimen>
+    <dimen name="player_live_progress_ring_size">44dp</dimen>
+
+    <dimen name="player_seek_bar_height">8dp</dimen>
+    <dimen name="player_seek_bar_thumb_width">2dp</dimen>
+    <dimen name="player_seek_bar_thumb_height">16dp</dimen>
+
+    <dimen name="font_very_big_title">30sp</dimen>
+    <dimen name="font_big_title">24sp</dimen>
+    <dimen name="font_title">18sp</dimen>
+    <dimen name="font_large">16sp</dimen>
+    <dimen name="font_regular">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_xsmall">11sp</dimen>
+    <dimen name="font_xxsmall">9sp</dimen>
+
+    <dimen name="live_progress_ring_size">44dp</dimen>
+
+    <dimen name="bottom_sheet_indicator_height">18dp</dimen>
+
+    <!-- RecyclerView Fast Scroller -->
+    <dimen name="corner_radius">6dp</dimen>
+    <dimen name="default_handle_size">18dp</dimen>
+    <dimen name="default_popup_padding">16dp</dimen>
+
+    <dimen name="default_rv_bottom_padding">32dp</dimen>
+    <dimen name="default_rv_end_padding">24dp</dimen>
+
+    <dimen name="settings_menu_profile_picture_size">80dp</dimen>
+
+    <dimen name="code_digit_size">64dp</dimen>
+    <dimen name="margin_bottom_button_record">96dp</dimen>
+    <dimen name="width_profile_item_image">80dp</dimen>
+    <dimen name="height_profile_item_image">80dp</dimen>
+    <dimen name="height_button_update_profile">56dp</dimen>
+</resources>
